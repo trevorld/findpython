@@ -1,4 +1,4 @@
-Package: python_tools
+Package: findpython
 Type: Package
 Title: Python tools to find an acceptable python binary
 Version: 0.1
@@ -8,3 +8,5 @@ URL: https://github.com/trevorld/python_tools
 BugReports: https://github.com/trevorld/python_tools/issues
 Description: Package designed to find an acceptable python binary.
 License: MIT
+Collate:
+    'find_python_cmd.r'

@@ -1,7 +1,11 @@
-python_tools
-============
+findpython
+==========
 
 R package currently designed to find acceptable Python binaries for your program.  Since there are often multiple python binaries installed on any given system and they aren't always added to the path this can be a non-trivial task.
+
+To install the development version use::
+
+    devtools::install_github("trevorld/findpython")
 
 Usage
 =====
@@ -26,7 +30,7 @@ Although `find_python_cmd` will create a default message if left unspecified you
         error_message = 'Was unable to find the Python 3 binary dependency.  See file INSTALL for more information')
 
 
-If you already have a python binary we can use `is_python_sufficient` to test whether it has sufficient features.  It has the same arguments `minimum_version`, `maximum_version`, and `required_modules`::
+If you have a python binary you want to check you can use `is_python_sufficient` to test whether it has sufficient features.  It has the same arguments `minimum_version`, `maximum_version`, and `required_modules` as `find_python_cmd`::
 
   is_python_sufficient(path_to_binary, minimum_version = '2.6', required_modules = 'scipy')
 
