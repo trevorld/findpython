@@ -35,8 +35,8 @@
   raises an error if not possible
 }
 \examples{
-find_python_cmd()
-     \dontrun{
+\dontrun{
+             find_python_cmd()
              find_python_cmd(minimum_version='2.6', maximum_version='2.7')
              find_python_cmd(required_modules = c('argparse', 'json | simplejson'))
      }
