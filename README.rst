@@ -26,9 +26,14 @@ If you don't care what version of Python you use but it needs to have access to 
 
 Although `find_python_cmd` will create a basic default message if left unspecified you can use the `error_message` argument to specify what error message your program will output if it is unable to find an acceptable binary::
 
-  find_python_cmd(minimum_version = '3.0', 
-        error_message = 'Was unable to find the Python 3 binary dependency.  See file INSTALL for more information')
+  find_python_cmd(minimum_version = '4.0', 
+        error_message = 'Was unable to find the Python 4 binary dependency.  See file INSTALL for more information')
 
+The default error message will be something like::
+
+    > find_python_cmd(min='4.0')
+    Error in find_python_cmd(min = "4.0") : 
+      Couldn't find a sufficient Python binary. If you haven't installed the Python dependency yet please do so. If you have but it isn't on the system path (as is default on Windows) please add it to path or set options('python_cmd'='/path/to/binary')  or set the PYTHON, PYTHON2, or PYTHON3 environmental variables. Python must be at least version 4.0  
 
 If you already have a python binary you want to check you can use `is_python_sufficient` to test whether it has sufficient features.  It has the same arguments `minimum_version`, `maximum_version`, and `required_modules` as `find_python_cmd`::
 
