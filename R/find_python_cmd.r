@@ -90,7 +90,15 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
             return(cmd)
         }
     }
-    if(is.null(error_message)) { error_message <- "Couldn't find a sufficient python binary." }
+    if(is.null(error_message)) { error_message <- paste("Couldn't find a sufficient Python binary.",
+                    "If you haven't installed the Python dependency yet please do so.",
+                    "If you have but it isn't on the system path (as is default on Windows) please add it to path",
+                    "or set options('python_cmd'='/path/to/binary') ",
+                    "or set the PYTHON, PYTHON2, or PYTHON3 environmental variables.",
+                    if(!is.null(minimum_version)) paste('Python must be at least version', minimum_version),
+                    if(!is.null(maximum_version)) paste('Python must be at least version', maximum_version),
+                    if(!is.null(required_modules)) paste('Python must have access to the modules:', 
+                                                         paste(required_modules, collapse=', ')))}
     stop(error_message)
 }
 
