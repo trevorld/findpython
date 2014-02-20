@@ -1,4 +1,5 @@
 # Copyright (c) 2012-2014 Trevor L. Davis
+# Copyright (c) 2014 Paul Gilbert
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -75,6 +76,7 @@ is_python_sufficient <- function(path, minimum_version=NULL,
 #'              find_python_cmd(minimum_version='2.6', maximum_version='2.7')
 #'              find_python_cmd(required_modules = c('argparse', 'json | simplejson'))
 #'      }
+#' @seealso \code{\link{can_find_python_cmd}} for a wrapper which doesn't throw an error
 #' @export
 find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
                             required_modules=NULL, error_message=NULL) {
@@ -100,6 +102,35 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
                     if(!is.null(required_modules)) paste('Python must have access to the modules:', 
                                                          paste(required_modules, collapse=', ')))}
     stop(error_message)
+}
+#' Determins whether or not it can find a suitable python cmd 
+#'
+#' \code{can_find_python_cmd} runs \code{find_python_cmd} and returns whether it could find a suitable python cmd.  If it was successful its output also saves the found command as an attribute. 
+#'
+#' @inheritParams find_python_cmd
+#' @param silent Passed to \code{try}, whether any error messages from \code{find_python_cmd} should be suppressed
+#' @return \code{TRUE} or \code{FALSE} depending on whether \code{find_python_cmd} could find an appropriate python binary.
+#'     If \code{TRUE} the path to an appropriate python binary is also set as an attribute.
+#' @examples 
+#'      did_find_cmd <- can_find_python_cmd()
+#'      attributes(did_find_cmd)
+#' @seealso \code{\link{find_python_cmd}}
+#' @export
+can_find_python_cmd <- function(minimum_version = NULL,
+          maximum_version = NULL, required_modules = NULL, 
+          error_message = NULL, silent = FALSE) {
+    python_cmd <- try(find_python_cmd(minimum_version = minimum_version,
+                          maximum_version = maximum_version,
+                          required_modules = required_modules,
+                          error_message = error_message),
+                    silent = silent)
+    if(inherits(python_cmd, "try-error")) {
+        r <- FALSE
+    } else {
+        r <- TRUE
+        attr(r, 'python_cmd') <- python_cmd
+    }
+    r
 }
 
 # Create appropriate module import code

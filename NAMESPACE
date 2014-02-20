@@ -1,2 +1,3 @@
+export(can_find_python_cmd)
 export(find_python_cmd)
 export(is_python_sufficient)

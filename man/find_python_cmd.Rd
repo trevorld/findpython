@@ -41,4 +41,8 @@
              find_python_cmd(required_modules = c('argparse', 'json | simplejson'))
      }
 }
+\seealso{
+  \code{\link{can_find_python_cmd}} for a wrapper which
+  doesn't throw an error
+}
 
