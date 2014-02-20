@@ -44,7 +44,7 @@
 }
 \examples{
 did_find_cmd <- can_find_python_cmd()
-     attributes(did_find_cmd)
+     python_cmd <- attr(did_find_cmd, "python_cmd")
 }
 \seealso{
   \code{\link{find_python_cmd}}

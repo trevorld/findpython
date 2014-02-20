@@ -113,7 +113,7 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
 #'     If \code{TRUE} the path to an appropriate python binary is also set as an attribute.
 #' @examples 
 #'      did_find_cmd <- can_find_python_cmd()
-#'      attributes(did_find_cmd)
+#'      python_cmd <- attr(did_find_cmd, "python_cmd")
 #' @seealso \code{\link{find_python_cmd}}
 #' @export
 can_find_python_cmd <- function(minimum_version = NULL,
@@ -126,6 +126,7 @@ can_find_python_cmd <- function(minimum_version = NULL,
                     silent = silent)
     if(inherits(python_cmd, "try-error")) {
         r <- FALSE
+        attr(r, 'python_cmd') <- NA
     } else {
         r <- TRUE
         attr(r, 'python_cmd') <- python_cmd
