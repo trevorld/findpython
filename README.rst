@@ -29,7 +29,7 @@ Although `find_python_cmd` will create a basic default message if left unspecifi
   find_python_cmd(minimum_version = '4.0', 
         error_message = 'Was unable to find the Python 4 binary dependency.  See file INSTALL for more information')
 
-There is also a wrapper for `find_python_cmd` that instead of throwing an error upon failing to find an appropriate Python command will return `FALSE` and if it finds an appropriate command will return `TRUE`.  If successful it attachs the appropriate binary path as an attribute `python_cmd` (or set it to `NA` if unsuccessful)::
+There is also a wrapper for `find_python_cmd` that instead of throwing an error upon failing to find an appropriate Python command will return `FALSE` and if it finds an appropriate command will return `TRUE`.  If successful it attaches the appropriate binary path as an attribute `python_cmd`::
 
   did_find_python <- can_find_python_cmd()
   python_cmd <- attr(did_find_python, "python_cmd")

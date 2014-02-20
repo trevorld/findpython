@@ -126,7 +126,6 @@ can_find_python_cmd <- function(minimum_version = NULL,
                     silent = silent)
     if(inherits(python_cmd, "try-error")) {
         r <- FALSE
-        attr(r, 'python_cmd') <- NA
     } else {
         r <- TRUE
         attr(r, 'python_cmd') <- python_cmd
