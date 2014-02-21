@@ -83,7 +83,7 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
     python_cmds <- c(getOption("python_cmd", ""), Sys.getenv("PYTHON", ""),
                     Sys.getenv("PYTHON2", ""), Sys.getenv("PYTHON3", ""),
                     "python", "python3", "python2", "python2.7", "pypy",
-                    sprintf("C:/Python%s/python", c(20, 30:35)))
+                    sprintf("C:/Python%s/python", c(20:27, 30:35)))
     python_cmds <- unique(python_cmds)
     python_cmds <- Sys.which(python_cmds)
     python_cmds <- python_cmds[which(python_cmds != "")]
