@@ -80,10 +80,11 @@ is_python_sufficient <- function(path, minimum_version=NULL,
 #' @export
 find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
                             required_modules=NULL, error_message=NULL) {
-    python_cmds <- c(getOption("python_cmd", ""), Sys.getenv("PYTHON", ""),
-                    Sys.getenv("PYTHON2", ""), Sys.getenv("PYTHON3", ""),
-                    "python", "python3", "python2", "python2.7", "pypy",
-                    sprintf("C:/Python%s/python", c(20:27, 30:35)))
+    python_cmds <- c(getOption("python_cmd", ""), "python", Sys.getenv("PYTHON", ""), 
+                    sprintf("python%.1f", c(seq(3.4, 3.0, by=-0.1), seq(2.7, 2.0, by=-0.1))), 
+                    "python3", "python2", "pypy",
+                    Sys.getenv("PYTHON3", ""), Sys.getenv("PYTHON2", ""), 
+                    sprintf("C:/Python%s/python", c(34:30, 27:20)))
     python_cmds <- unique(python_cmds)
     python_cmds <- Sys.which(python_cmds)
     python_cmds <- python_cmds[which(python_cmds != "")]
@@ -98,7 +99,7 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
                     "or set options('python_cmd'='/path/to/binary') ",
                     "or set the PYTHON, PYTHON2, or PYTHON3 environmental variables.",
                     if(!is.null(minimum_version)) paste('Python must be at least version', minimum_version),
-                    if(!is.null(maximum_version)) paste('Python must be at least version', maximum_version),
+                    if(!is.null(maximum_version)) paste('Python must be at most version', maximum_version),
                     if(!is.null(required_modules)) paste('Python must have access to the modules:', 
                                                          paste(required_modules, collapse=', ')))}
     stop(error_message)
