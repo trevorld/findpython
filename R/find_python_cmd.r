@@ -47,9 +47,11 @@ is_python_sufficient <- function(path, minimum_version=NULL,
     }
     version_code <- .create_version_checking_code(minimum_version, maximum_version)
     python_code <- append(python_code, version_code)
+    ok_message <- "Everything worked out okay"
+    python_code <- append(python_code, paste0("print(", shQuote(ok_message), ")"))
     tryCatch({
-            system(path, intern=TRUE, input=python_code, ignore.stderr=TRUE)
-            TRUE
+            output <- system(path, intern=TRUE, input=python_code, ignore.stderr=TRUE)
+            any(grepl(ok_message, output))
         }, 
         warning = function(w) { 
             # qpath <- sQuote(path)
