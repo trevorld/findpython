@@ -1,9 +1,9 @@
 Package: findpython
 Type: Package
 Title: Python Tools to Find an Acceptable Python Binary
-Version: 1.0.1
+Version: 1.0.2
 Author: Trevor L Davis and Paul Gilbert.
-Maintainer: Trevor L Davis <trevor.l.davis@stanford.edu>
+Maintainer: Trevor L Davis <trevor.l.davis@gmail.com>
 URL: https://github.com/trevorld/findpython
 BugReports: https://github.com/trevorld/findpython/issues
 Description: Package designed to find an acceptable python binary.
