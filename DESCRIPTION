@@ -12,3 +12,4 @@ Suggests:
 License: MIT + file LICENSE
 Collate:
     'find_python_cmd.r'
+RoxygenNote: 5.0.1

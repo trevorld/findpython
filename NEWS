@@ -1,6 +1,10 @@
+findpython 1.0.2
+================
+* Looks for more python binaries and likely folders in Windows (i.e. Python 3.5 through Python 3.9).  Thanks Jori Liesenborgs for request.
+
 findpython 1.0.0
 ================
-* Initial release to CRAN
+* Initial release to CRAN.
 
 
 

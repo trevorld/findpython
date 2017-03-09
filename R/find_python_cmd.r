@@ -83,10 +83,10 @@ is_python_sufficient <- function(path, minimum_version=NULL,
 find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
                             required_modules=NULL, error_message=NULL) {
     python_cmds <- c(getOption("python_cmd", ""), "python", Sys.getenv("PYTHON", ""), 
-                    sprintf("python%.1f", c(seq(3.4, 3.0, by=-0.1), seq(2.7, 2.0, by=-0.1))), 
-                    "python3", "python2", "pypy",
+                    sprintf("python%.1f", c(seq(4.9, 2.0, by=-0.1))), 
+                    "python4", "python3", "python2", "pypy",
                     Sys.getenv("PYTHON3", ""), Sys.getenv("PYTHON2", ""), 
-                    sprintf("C:/Python%s/python", c(34:30, 27:20)))
+                    sprintf("C:/Python%s/python", c(40:20)))
     python_cmds <- unique(python_cmds)
     python_cmds <- Sys.which(python_cmds)
     python_cmds <- python_cmds[which(python_cmds != "")]
