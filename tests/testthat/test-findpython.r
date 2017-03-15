@@ -49,7 +49,7 @@ if (cmdExists) {
             expect_false(is_python_sufficient(cmd, required_modules ='xxxyyyzzz'))
         })
     } else {
-        print("Python 2 not found")
+        message("Python 2 not found")
     }
     python3_exists <- can_find_python_cmd(minimum_version = '3.0', silent=TRUE)
     if (python3_exists) {
@@ -64,7 +64,7 @@ if (cmdExists) {
             expect_false(is_python_sufficient(cmd, required_modules ='xxxyyyzzz'))
         })
     } else {
-        print("Python 3 not found")
+        message("Python 3 not found")
     }
     # Check Python 4 doesn't exist when testing other machines
     python4_exists <- can_find_python_cmd(minimum_version = '4.0', silent=TRUE)
@@ -80,7 +80,7 @@ if (cmdExists) {
             expect_false(is_python_sufficient(cmd, required_modules ='xxxyyyzzz'))
         })
     } else {
-        print("Python 4 not found")
+        message("Python 4 not found")
     }
 } else {
     warning('python was not found. No other checks performed.') 
