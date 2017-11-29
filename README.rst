@@ -1,17 +1,22 @@
 findpython
 ==========
 
-.. image:: http://www.r-pkg.org/badges/version/findpython
-    :target: http://cran.r-project.org/package=findpython
+.. image:: https://www.r-pkg.org/badges/version/findpython
+    :target: https://cran.r-project.org/package=findpython
     :alt: CRAN Status Badge
 
 .. image:: https://travis-ci.org/trevorld/findpython.png?branch=master
-    :target: http://travis-ci.org/trevorld/findpython
+    :target: https://travis-ci.org/trevorld/findpython
     :alt: Build Status
 
 .. image:: https://img.shields.io/codecov/c/github/trevorld/findpython.svg
     :target: https://codecov.io/github/trevorld/findpython?branch=master
     :alt: Coverage Status
+
+.. image:: https://cranlogs.r-pkg.org/badges/findpython
+    :target: https://cran.r-project.org/package=findpython
+   :alt: RStudio CRAN mirror downloads
+
 
 R package currently designed to find acceptable Python binaries for your program.  Since there are often multiple python binaries installed on any given system and they aren't always added to the path this can be a non-trivial task.
 
