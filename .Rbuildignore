@@ -2,3 +2,5 @@ COPYING
 CONTRIBUTING
 README.rst
 .travis.yml
+revdep
+cran-comments.rst
