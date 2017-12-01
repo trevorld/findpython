@@ -2,7 +2,7 @@
 % Please edit documentation in R/find_python_cmd.r
 \name{can_find_python_cmd}
 \alias{can_find_python_cmd}
-\title{Determins whether or not it can find a suitable python cmd}
+\title{Determines whether or not it can find a suitable python cmd}
 \usage{
 can_find_python_cmd(minimum_version = NULL, maximum_version = NULL,
   required_modules = NULL, error_message = NULL, silent = FALSE)
@@ -39,4 +39,3 @@ If left NULL will print out a default message.}
 \seealso{
 \code{\link{find_python_cmd}}
 }
-

@@ -15,7 +15,7 @@ findpython
 
 .. image:: https://cranlogs.r-pkg.org/badges/findpython
     :target: https://cran.r-project.org/package=findpython
-   :alt: RStudio CRAN mirror downloads
+    :alt: RStudio CRAN mirror downloads
 
 
 R package currently designed to find acceptable Python binaries for your program.  Since there are often multiple python binaries installed on any given system and they aren't always added to the path this can be a non-trivial task.

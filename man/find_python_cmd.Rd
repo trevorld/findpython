@@ -39,4 +39,3 @@ The path to an appropriate python binary.  If such a path wasn't found then it w
 \seealso{
 \code{\link{can_find_python_cmd}} for a wrapper which doesn't throw an error
 }
-
