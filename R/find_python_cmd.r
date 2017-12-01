@@ -95,7 +95,7 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
             return(cmd)
         }
     }
-    if(exists(reticulate::py_discover_config)) { # Fall back on reticulate if can't find a suitable command
+    if(exists('py_discover_config', where=asNamespace('reticulate'), mode='function')) { # Fall back on reticulate if can't find a suitable command
         python_cmds <- reticulate::py_discover_config()$python_versions
         for(cmd in python_cmds) {
             if(is_python_sufficient(cmd, minimum_version, maximum_version, required_modules)) { 

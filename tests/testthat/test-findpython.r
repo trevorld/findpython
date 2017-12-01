@@ -59,6 +59,8 @@ test_that("Python 3 works as expected", {
     # 'sys' should always be installed
     expect_true(is_python_sufficient(cmd, required_modules = 'sys'))
 
+    expect_true(is_python_sufficient(cmd, required_modules = 'json | simplejson'))
+
     # 'xxxyyyzzz' is being found and should not exist.")
     expect_false(is_python_sufficient(cmd, required_modules ='xxxyyyzzz'))
 })
