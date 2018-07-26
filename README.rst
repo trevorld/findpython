@@ -17,6 +17,9 @@ findpython
     :target: https://cran.r-project.org/package=findpython
     :alt: RStudio CRAN mirror downloads
 
+.. image:: http://www.repostatus.org/badges/latest/active.svg
+   :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
+   :target: http://www.repostatus.org/#active
 
 R package currently designed to find acceptable Python binaries for your program.  Since there are often multiple python binaries installed on any given system and they aren't always added to the path this can be a non-trivial task.
 
