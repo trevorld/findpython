@@ -95,7 +95,10 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
             return(cmd)
         }
     }
-    if(exists('py_discover_config', where=asNamespace('reticulate'), mode='function')) { # Fall back on reticulate if can't find a suitable command
+    # Try using reticulate::py_discover_config()$python_versions if can't find a suitable command
+    reticulate_installed <- try(exists('py_discover_config', where=asNamespace('reticulate'), mode='function'), 
+                                silent=TRUE)
+    if(isTRUE(reticulate_installed)) { 
         python_cmds <- reticulate::py_discover_config()$python_versions
         for(cmd in python_cmds) {
             if(is_python_sufficient(cmd, minimum_version, maximum_version, required_modules)) { 

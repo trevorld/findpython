@@ -4,8 +4,8 @@
 \alias{is_python_sufficient}
 \title{Tests whether the python command is sufficient}
 \usage{
-is_python_sufficient(path, minimum_version = NULL, maximum_version = NULL,
-  required_modules = NULL)
+is_python_sufficient(path, minimum_version = NULL,
+  maximum_version = NULL, required_modules = NULL)
 }
 \arguments{
 \item{path}{The path to a given python binary.

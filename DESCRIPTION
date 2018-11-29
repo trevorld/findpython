@@ -1,7 +1,7 @@
 Package: findpython
 Type: Package
-Title: Python Tools to Find an Acceptable Python Binary
-Version: 1.0.3
+Title: Functions to Find an Acceptable Python Binary
+Version: 1.0.4
 Author: Trevor L Davis and Paul Gilbert.
 Maintainer: Trevor L Davis <trevor.l.davis@gmail.com>
 URL: https://github.com/trevorld/findpython
@@ -13,4 +13,4 @@ Suggests:
 License: MIT + file LICENSE
 Collate:
     'find_python_cmd.r'
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

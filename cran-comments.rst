@@ -12,4 +12,4 @@ There were no ERRORs, WARNINGs, or NOTEs
 
 I have also run R CMD check on downstream dependencies of findpython.
 All packages had no ERRORs or WARNINGs.  
-RWebLogo had 2 NOTEs unrelated to my package.
+RWebLogo and popRange have NOTEs unrelated to my package.

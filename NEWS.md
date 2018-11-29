@@ -1,3 +1,7 @@
+findpython 1.0.4
+================
+* No longer throws an error when can't find a suitable python command AND ``reticulate`` package is not installed.
+
 findpython 1.0.3
 ================
 * Uses ``reticulate::py_discover_config`` to find more python
