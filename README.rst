@@ -9,6 +9,10 @@ findpython
     :target: https://travis-ci.org/trevorld/findpython
     :alt: Build Status
 
+.. image:: https://ci.appveyor.com/api/projects/status/github/trevorld/findpython?branch=master&svg=true 
+    :target: https://ci.appveyor.com/project/trevorld/findpython
+    :alt: AppVeyor Build Status
+
 .. image:: https://img.shields.io/codecov/c/github/trevorld/findpython.svg
     :target: https://codecov.io/github/trevorld/findpython?branch=master
     :alt: Coverage Status
