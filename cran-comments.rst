@@ -1,8 +1,9 @@
 **Test environments**
 
-* travis-ci linux (devel, release)
-* travis-ci osx (release)
-* win-builder windows (devel)
+* win-builder (windows, R devel)
+* appveyor (windows, R release)
+* travis-ci (linux, R devel and R release)
+* travis-ci (osx, R release)
 
 **R CMD check results**
 
