@@ -4,7 +4,7 @@ findpython 1.0.5
 
 findpython 1.0.4
 ================
-* No longer throws an error when can't find a suitable python command AND ``reticulate`` package is not installed.
+* No longer throws an unintended error when can't find a suitable python command AND ``reticulate`` package is not installed.
 
 findpython 1.0.3
 ================
