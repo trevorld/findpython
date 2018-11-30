@@ -1,3 +1,7 @@
+findpython 1.0.5
+================
+* Minor internal refactoring.
+
 findpython 1.0.4
 ================
 * No longer throws an error when can't find a suitable python command AND ``reticulate`` package is not installed.

@@ -1,9 +1,9 @@
 Package: findpython
 Type: Package
 Title: Functions to Find an Acceptable Python Binary
-Version: 1.0.4
-Author: Trevor L Davis and Paul Gilbert.
-Maintainer: Trevor L Davis <trevor.l.davis@gmail.com>
+Version: 1.0.5-1
+Authors@R: c(person("Trevor L", "Davis", role=c("aut", "cre"), email="trevor.l.davis@gmail.com"),
+        person("Paul", "Gilbert", role="aut"))
 URL: https://github.com/trevorld/findpython
 BugReports: https://github.com/trevorld/findpython/issues
 Description: Package designed to find an acceptable python binary.

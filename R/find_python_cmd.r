@@ -1,4 +1,4 @@
-# Copyright (c) 2012-2014 Trevor L. Davis
+# Copyright (c) 2012-2018 Trevor L. Davis
 # Copyright (c) 2014 Paul Gilbert
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -96,9 +96,7 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
         }
     }
     # Try using reticulate::py_discover_config()$python_versions if can't find a suitable command
-    reticulate_installed <- try(exists('py_discover_config', where=asNamespace('reticulate'), mode='function'), 
-                                silent=TRUE)
-    if(isTRUE(reticulate_installed)) { 
+    if(system.file("reticulate") != "") { 
         python_cmds <- reticulate::py_discover_config()$python_versions
         for(cmd in python_cmds) {
             if(is_python_sufficient(cmd, minimum_version, maximum_version, required_modules)) { 
