@@ -1,6 +1,6 @@
 findpython 1.0.5
 ================
-* Minor internal refactoring.
+* Minor internal refactoring and documentation improvements.
 
 findpython 1.0.4
 ================
@@ -13,11 +13,12 @@ findpython 1.0.3
 
 findpython 1.0.2
 ================
-* Looks for more python binaries and likely folders in Windows (i.e. Python 3.5 through Python 3.9).  Thanks Jori Liesenborgs for request.
+* Looks for more python binaries and likely folders in Windows (i.e. Python 3.5 through Python 3.9).  
+  Thanks Jori Liesenborgs for request.
 
-findpython 1.0.0
+findpython 1.0.1
 ================
-* Initial release to CRAN.
+* Initial released version on CRAN.
 
 
 
