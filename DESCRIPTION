@@ -1,7 +1,7 @@
 Package: findpython
 Type: Package
 Title: Functions to Find an Acceptable Python Binary
-Version: 1.0.5-1
+Version: 1.0.5
 Authors@R: c(person("Trevor L", "Davis", role=c("aut", "cre"), email="trevor.l.davis@gmail.com"),
         person("Paul", "Gilbert", role="aut"))
 URL: https://github.com/trevorld/findpython
