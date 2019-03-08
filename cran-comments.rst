@@ -1,7 +1,8 @@
 **Test environments**
 
-* win-builder (windows, R devel)
-* appveyor (windows, R release)
+* local (linux, R 3.4.4)
+* win-builder (windows, R devel and R release)
+* appveyor (windows, R devel and R release)
 * travis-ci (linux, R devel and R release)
 * travis-ci (osx, R release)
 
