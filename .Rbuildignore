@@ -1,6 +1,7 @@
 COPYING
 CONTRIBUTING
 README.rst
+^.appveyor.yml$
 .travis.yml
 revdep
 cran-comments.rst
