@@ -6,9 +6,9 @@
 * travis-ci (linux, R devel and R release)
 * travis-ci (osx, R release)
 
-**R CMD check results**
+**R CMD check --as-cran results**
 
-There were no ERRORs, WARNINGs, or NOTEs
+Status: OK
 
 **Downstream dependencies**
 

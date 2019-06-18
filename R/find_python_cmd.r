@@ -96,7 +96,7 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
         }
     }
     # Try using reticulate::py_discover_config()$python_versions if can't find a suitable command
-    if(system.file("reticulate") != "") { 
+    if (requireNamespace("reticulate", quietly=TRUE)) { 
         python_cmds <- reticulate::py_discover_config()$python_versions
         for(cmd in python_cmds) {
             if(is_python_sufficient(cmd, minimum_version, maximum_version, required_modules)) { 
@@ -104,7 +104,8 @@ find_python_cmd <- function(minimum_version=NULL, maximum_version=NULL,
             }
         }
     }
-    if(is.null(error_message)) { error_message <- paste("Couldn't find a sufficient Python binary.",
+    if (is.null(error_message)) { 
+        error_message <- paste("Couldn't find a sufficient Python binary.",
                     "If you haven't installed the Python dependency yet please do so.",
                     "If you have but it isn't on the system path (as is default on Windows) please add it to path",
                     "or set options('python_cmd'='/path/to/binary') ",
