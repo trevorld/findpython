@@ -1,7 +1,7 @@
 Package: findpython
 Type: Package
 Title: Functions to Find an Acceptable Python Binary
-Version: 1.0.6-1
+Version: 1.0.6-2
 Authors@R: c(person("Trevor L", "Davis", role=c("aut", "cre"), email="trevor.l.davis@gmail.com"),
         person("Paul", "Gilbert", role="aut"))
 URL: https://github.com/trevorld/findpython
@@ -14,4 +14,4 @@ Suggests:
 License: MIT + file LICENSE
 Collate:
     'find_python_cmd.r'
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0

@@ -4,19 +4,23 @@
 \alias{is_python_sufficient}
 \title{Tests whether the python command is sufficient}
 \usage{
-is_python_sufficient(path, minimum_version = NULL,
-  maximum_version = NULL, required_modules = NULL)
+is_python_sufficient(
+  path,
+  minimum_version = NULL,
+  maximum_version = NULL,
+  required_modules = NULL
+)
 }
 \arguments{
 \item{path}{The path to a given python binary.
 If binary is on system path just the binary name will work.}
 
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a '.'.
+Should be a string with major and minor number separated by a \sQuote{.}.
 If left NULL won't impose such a restriction.}
 
-\item{maximum_version}{The maximum version of python it should be. 
-Should be a string with major and minor number separated by a '.'.
+\item{maximum_version}{The maximum version of python it should be.
+Should be a string with major and minor number separated by a \sQuote{.}.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.

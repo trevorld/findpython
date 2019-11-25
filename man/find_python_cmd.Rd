@@ -4,16 +4,20 @@
 \alias{find_python_cmd}
 \title{Find a suitable python cmd or give error if not possible}
 \usage{
-find_python_cmd(minimum_version = NULL, maximum_version = NULL,
-  required_modules = NULL, error_message = NULL)
+find_python_cmd(
+  minimum_version = NULL,
+  maximum_version = NULL,
+  required_modules = NULL,
+  error_message = NULL
+)
 }
 \arguments{
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a '.'.
+Should be a string with major and minor number separated by a \sQuote{.}.
 If left NULL won't impose such a restriction.}
 
-\item{maximum_version}{The maximum version of python it should be. 
-Should be a string with major and minor number separated by a '.'.
+\item{maximum_version}{The maximum version of python it should be.
+Should be a string with major and minor number separated by a \sQuote{.}.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.
@@ -32,8 +36,8 @@ The path to an appropriate python binary.  If such a path wasn't found then it w
 \examples{
      \dontrun{
              find_python_cmd()
-             find_python_cmd(minimum_version='2.6', maximum_version='2.7')
-             find_python_cmd(required_modules = c('argparse', 'json | simplejson'))
+             find_python_cmd(minimum_version = "2.6", maximum_version = "2.7")
+             find_python_cmd(required_modules = c("argparse", "json | simplejson"))
      }
 }
 \seealso{

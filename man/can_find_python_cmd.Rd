@@ -4,16 +4,21 @@
 \alias{can_find_python_cmd}
 \title{Determines whether or not it can find a suitable python cmd}
 \usage{
-can_find_python_cmd(minimum_version = NULL, maximum_version = NULL,
-  required_modules = NULL, error_message = NULL, silent = FALSE)
+can_find_python_cmd(
+  minimum_version = NULL,
+  maximum_version = NULL,
+  required_modules = NULL,
+  error_message = NULL,
+  silent = FALSE
+)
 }
 \arguments{
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a '.'.
+Should be a string with major and minor number separated by a \sQuote{.}.
 If left NULL won't impose such a restriction.}
 
-\item{maximum_version}{The maximum version of python it should be. 
-Should be a string with major and minor number separated by a '.'.
+\item{maximum_version}{The maximum version of python it should be.
+Should be a string with major and minor number separated by a \sQuote{.}.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.
@@ -26,11 +31,13 @@ If left NULL will print out a default message.}
 \item{silent}{Passed to \code{try}, whether any error messages from \code{find_python_cmd} should be suppressed}
 }
 \value{
-\code{TRUE} or \code{FALSE} depending on whether \code{find_python_cmd} could find an appropriate python binary.
+\code{TRUE} or \code{FALSE} depending on whether
+    \code{find_python_cmd} could find an appropriate python binary.
     If \code{TRUE} the path to an appropriate python binary is also set as an attribute.
 }
 \description{
-\code{can_find_python_cmd} runs \code{find_python_cmd} and returns whether it could find a suitable python cmd.  If it was successful its output also saves the found command as an attribute.
+\code{can_find_python_cmd} runs \code{find_python_cmd} and returns whether it could find a suitable python cmd.
+ If it was successful its output also saves the found command as an attribute.
 }
 \examples{
      did_find_cmd <- can_find_python_cmd()
