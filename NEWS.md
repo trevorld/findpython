@@ -1,3 +1,7 @@
+findpython 1.0.6
+================
+* Looks for more python binaries (i.e. Python 3.10 through 3.12)
+
 findpython 1.0.5
 ================
 * Minor internal refactoring and documentation improvements.
