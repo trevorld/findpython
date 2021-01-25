@@ -21,9 +21,9 @@ findpython
     :target: https://cran.r-project.org/package=findpython
     :alt: RStudio CRAN mirror downloads
 
-.. image:: http://www.repostatus.org/badges/latest/inactive.svg
+.. image:: https://www.repostatus.org/badges/latest/inactive.svg
    :alt: Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.
-   :target: http://www.repostatus.org/#inactive
+   :target: https://www.repostatus.org/#inactive
 
 ``findpython`` is an R package that finds acceptable Python binaries for your program.  Since there are often multiple python binaries installed on any given system and they aren't always added to the path this can be a non-trivial task.
 
