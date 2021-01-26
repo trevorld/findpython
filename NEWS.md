@@ -1,6 +1,6 @@
-findpython 1.0.6
+findpython 1.0.7
 ================
-* Looks for more python binaries (i.e. Python 3.10 through 3.12)
+* Looks for more python binaries (Python 3.10 through 3.12)
 
 findpython 1.0.5
 ================
