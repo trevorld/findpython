@@ -5,5 +5,5 @@ README.rst
 ^.lintr$
 ^.travis.yml$
 revdep
-cran-comments.rst
+cran-comments.md
 ^\.github$
