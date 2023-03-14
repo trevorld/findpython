@@ -116,7 +116,7 @@ default_error_message <- function(minimum_version = NULL, maximum_version = NULL
 get_python_cmds <- function() {
     python_cmds <- c(getOption("python_cmd", ""), "python", Sys.getenv("PYTHON", ""),
                     paste0("python4.", seq(9, 0, by = -1)), Sys.getenv("PYTHON4", ""), "python4",
-                    paste0("python3.", seq(12, 0, by = -1)), Sys.getenv("PYTHON3", ""), "python3",
+                    paste0("python3.", seq(20, 0, by = -1)), Sys.getenv("PYTHON3", ""), "python3",
                     paste0("python2.", seq(7, 0, by = -1)), Sys.getenv("PYTHON2", ""), "python2",
                     "pypy", sprintf("C:/Python%s/python", c(49:20)))
     python_cmds <- unique(python_cmds)

@@ -15,4 +15,5 @@ Suggests:
 License: MIT + file LICENSE
 Collate:
     'find_python_cmd.r'
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
+Encoding: UTF-8

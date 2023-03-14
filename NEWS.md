@@ -1,6 +1,11 @@
+findpython 1.0.8
+================
+* Looks for more python binaries (Python 3.13 through 3.20).
+  This will help future-proof the package for later Python releases.
+
 findpython 1.0.7
 ================
-* Looks for more python binaries (Python 3.10 through 3.12)
+* Looks for more python binaries (Python 3.10 through 3.12).
 
 findpython 1.0.5
 ================
