@@ -7,3 +7,4 @@ README.rst
 revdep
 cran-comments.md
 ^\.github$
+_pkgdown.yml

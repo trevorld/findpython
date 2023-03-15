@@ -1,0 +1,4 @@
+destination: "../../websites/R/findpython/"
+url: "https://trevorldavis.com/R/findpython"
+development:
+    mode: auto
