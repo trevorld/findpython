@@ -1,12 +1,12 @@
 Package: findpython
 Type: Package
 Title: Functions to Find an Acceptable Python Binary
-Version: 1.0.9-0
+Version: 1.0.9
 Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
              email="trevor.l.davis@gmail.com",
              comment = c(ORCID = "0000-0001-6341-4639")),
         person("Paul", "Gilbert", role="aut"))
-URL: https://github.com/trevorld/findpython, https://trevorldavis.com/R/findpython
+URL: https://github.com/trevorld/findpython, https://trevorldavis.com/R/findpython/
 BugReports: https://github.com/trevorld/findpython/issues
 Description: Package designed to find an acceptable python binary.
 Suggests:
