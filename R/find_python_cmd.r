@@ -1,4 +1,4 @@
-# Copyright (c) 2012-2018 Trevor L. Davis
+# Copyright (c) 2024 Trevor L. Davis
 # Copyright (c) 2014 Paul Gilbert
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,36 +21,42 @@
 
 #' Tests whether the python command is sufficient
 #'
-#' \code{is_python_sufficient} checks whether a given python binary has all the
+#' `is_python_sufficient()` checks whether a given python binary has all the
 #' desired features (minimum and/or maximum version number and/or access to
 #' certain modules).
 #'
 #' @param path The path to a given python binary.
 #'      If binary is on system path just the binary name will work.
 #' @param minimum_version The minimum version of python it should be.
-#'      Should be a string with major and minor number separated by a \sQuote{.}.
+#'      Should be a string with major and minor number separated by a `.`.
 #'      If left NULL won't impose such a restriction.
 #' @param maximum_version The maximum version of python it should be.
-#'      Should be a string with major and minor number separated by a \sQuote{.}.
+#'      Should be a string with major and minor number separated by a `.`.
 #'      If left NULL won't impose such a restriction.
 #' @param required_modules Which modules should be required.
-#'      Can use a single "|" to represent a single either-or requirement like "json|simplejson".
-#'      If left NULL won't impose such a restriction.
-#' @return \code{TRUE} or \code{FALSE} depending on whether the python binary met all requirements
+#'      Can use a single `|` to represent a single either-or requirement like `"json|simplejson"`.
+#'      If left `NULL` won't impose such a restriction.
+#' @return `TRUE` or `FALSE` depending on whether the python binary met all requirements
+#' @examples
+#' try({
+#'   cmd <- find_python_cmd()
+#'   is_python_sufficient(cmd, minimum_version = "3.3", required_modules = "sys")
+#' })
 #' @export
 is_python_sufficient <- function(path, minimum_version=NULL,
                                  maximum_version=NULL, required_modules=NULL) {
+    path <- normalizePath(path, mustWork = FALSE)
     python_code <- vector("character")
     if (!is.null(required_modules)) {
-        import_code <- .create_import_code(required_modules)
+        import_code <- create_import_code(required_modules)
         python_code <- append(python_code, import_code)
     }
-    version_code <- .create_version_checking_code(minimum_version, maximum_version)
+    version_code <- create_version_checking_code(minimum_version, maximum_version)
     python_code <- append(python_code, version_code)
     ok_message <- "Everything worked out okay"
     python_code <- append(python_code, paste("print(", shQuote(ok_message), ")", sep = ""))
     tryCatch({
-            output <- system(path, intern = TRUE, input = python_code, ignore.stderr = TRUE)
+            output <- system2(path, input = python_code, stdout = TRUE, stderr = FALSE)
             any(grepl(ok_message, output))
         },
         warning = function(w) {
@@ -63,19 +69,17 @@ is_python_sufficient <- function(path, minimum_version=NULL,
 
 #' Find a suitable python cmd or give error if not possible
 #'
-#' \code{find_python_cmd} finds a suitable python cmd or raises an error if not possible
+#' `find_python_cmd()` finds a suitable python cmd or raises an error if not possible
 #'
 #' @inheritParams is_python_sufficient
 #' @param error_message What error message the user will see if couldn't find a sufficient python binary.
 #'     If left NULL will print out a default message.
 #' @return The path to an appropriate python binary.  If such a path wasn't found then it will throw an error.
 #' @examples
-#'      \dontrun{
-#'              find_python_cmd()
-#'              find_python_cmd(minimum_version = "2.6", maximum_version = "2.7")
-#'              find_python_cmd(required_modules = c("argparse", "json | simplejson"))
-#'      }
-#' @seealso \code{\link{can_find_python_cmd}} for a wrapper which doesn't throw an error
+#' try(find_python_cmd())
+#' try(find_python_cmd(minimum_version = "2.6", maximum_version = "2.7"))
+#' try(find_python_cmd(required_modules = c("argparse", "json | simplejson")))
+#' @seealso [can_find_python_cmd()] for a wrapper which doesn't throw an error
 #' @export
 find_python_cmd <- function(minimum_version = NULL, maximum_version = NULL,
                             required_modules = NULL, error_message = NULL) {
@@ -119,6 +123,7 @@ get_python_cmds <- function() {
                     paste0("python3.", seq(20, 0, by = -1)), Sys.getenv("PYTHON3", ""), "python3",
                     paste0("python2.", seq(7, 0, by = -1)), Sys.getenv("PYTHON2", ""), "python2",
                     "pypy", sprintf("C:/Python%s/python", c(49:20)))
+    python_cmds <- normalizePath(python_cmds, mustWork = FALSE)
     python_cmds <- unique(python_cmds)
     python_cmds <- Sys.which(python_cmds)
     python_cmds[which(python_cmds != "")]
@@ -126,18 +131,18 @@ get_python_cmds <- function() {
 
 #' Determines whether or not it can find a suitable python cmd
 #'
-#' \code{can_find_python_cmd} runs \code{find_python_cmd} and returns whether it could find a suitable python cmd.
+#' `can_find_python_cmd()` runs [find_python_cmd()] and returns whether it could find a suitable python cmd.
 #'  If it was successful its output also saves the found command as an attribute.
 #'
 #' @inheritParams find_python_cmd
-#' @param silent Passed to \code{try}, whether any error messages from \code{find_python_cmd} should be suppressed
-#' @return \code{TRUE} or \code{FALSE} depending on whether
-#'     \code{find_python_cmd} could find an appropriate python binary.
-#'     If \code{TRUE} the path to an appropriate python binary is also set as an attribute.
+#' @param silent Passed to `try`, whether any error messages from [find_python_cmd()] should be suppressed
+#' @return `TRUE` or `FALSE` depending on whether
+#'    [find_python_cmd()] could find an appropriate python binary.
+#'     If `TRUE` the path to an appropriate python binary is also set as an attribute.
 #' @examples
-#'      did_find_cmd <- can_find_python_cmd()
-#'      python_cmd <- attr(did_find_cmd, "python_cmd")
-#' @seealso \code{\link{find_python_cmd}}
+#' did_find_cmd <- can_find_python_cmd()
+#' python_cmd <- attr(did_find_cmd, "python_cmd")
+#' @seealso [find_python_cmd()]
 #' @export
 can_find_python_cmd <- function(minimum_version = NULL,
           maximum_version = NULL, required_modules = NULL,
@@ -157,7 +162,7 @@ can_find_python_cmd <- function(minimum_version = NULL,
 }
 
 # Create appropriate module import code
-.create_import_code <- function(required_modules) {
+create_import_code <- function(required_modules) {
     import_code <- vector("character")
     for (module in required_modules) {
         if (grepl("\\|", module)) {
@@ -176,7 +181,7 @@ can_find_python_cmd <- function(minimum_version = NULL,
 }
 
 # Create appropriate version checking code
-.create_version_checking_code <- function(minimum_version = NULL, maximum_version = NULL) {
+create_version_checking_code <- function(minimum_version = NULL, maximum_version = NULL) {
     if (is.null(minimum_version) && is.null(maximum_version)) {
         return(c())
      } else {

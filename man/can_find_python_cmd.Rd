@@ -14,35 +14,35 @@ can_find_python_cmd(
 }
 \arguments{
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a \sQuote{.}.
+Should be a string with major and minor number separated by a \code{.}.
 If left NULL won't impose such a restriction.}
 
 \item{maximum_version}{The maximum version of python it should be.
-Should be a string with major and minor number separated by a \sQuote{.}.
+Should be a string with major and minor number separated by a \code{.}.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.
-Can use a single "|" to represent a single either-or requirement like "json|simplejson".
-If left NULL won't impose such a restriction.}
+Can use a single \code{|} to represent a single either-or requirement like \code{"json|simplejson"}.
+If left \code{NULL} won't impose such a restriction.}
 
 \item{error_message}{What error message the user will see if couldn't find a sufficient python binary.
 If left NULL will print out a default message.}
 
-\item{silent}{Passed to \code{try}, whether any error messages from \code{find_python_cmd} should be suppressed}
+\item{silent}{Passed to \code{try}, whether any error messages from \code{\link[=find_python_cmd]{find_python_cmd()}} should be suppressed}
 }
 \value{
 \code{TRUE} or \code{FALSE} depending on whether
-    \code{find_python_cmd} could find an appropriate python binary.
-    If \code{TRUE} the path to an appropriate python binary is also set as an attribute.
+\code{\link[=find_python_cmd]{find_python_cmd()}} could find an appropriate python binary.
+If \code{TRUE} the path to an appropriate python binary is also set as an attribute.
 }
 \description{
-\code{can_find_python_cmd} runs \code{find_python_cmd} and returns whether it could find a suitable python cmd.
- If it was successful its output also saves the found command as an attribute.
+\code{can_find_python_cmd()} runs \code{\link[=find_python_cmd]{find_python_cmd()}} and returns whether it could find a suitable python cmd.
+If it was successful its output also saves the found command as an attribute.
 }
 \examples{
-     did_find_cmd <- can_find_python_cmd()
-     python_cmd <- attr(did_find_cmd, "python_cmd")
+did_find_cmd <- can_find_python_cmd()
+python_cmd <- attr(did_find_cmd, "python_cmd")
 }
 \seealso{
-\code{\link{find_python_cmd}}
+\code{\link[=find_python_cmd]{find_python_cmd()}}
 }
