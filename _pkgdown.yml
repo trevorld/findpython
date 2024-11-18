@@ -2,3 +2,5 @@ destination: "../../websites/R/findpython/"
 url: "https://trevorldavis.com/R/findpython"
 development:
     mode: auto
+template:
+  bootstrap: 5

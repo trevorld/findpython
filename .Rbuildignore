@@ -1,6 +1,8 @@
 COPYING
 CONTRIBUTING
 README.rst
+README.html
+README.Rmd
 ^.appveyor.yml$
 ^.lintr$
 ^.travis.yml$
@@ -8,3 +10,6 @@ revdep
 cran-comments.md
 ^\.github$
 _pkgdown.yml
+LICENSE.md
+Rakefile
+
