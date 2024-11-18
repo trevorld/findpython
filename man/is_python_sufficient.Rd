@@ -16,22 +16,28 @@ is_python_sufficient(
 If binary is on system path just the binary name will work.}
 
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a \sQuote{.}.
+Should be a string with major and minor number separated by a \code{.}.
 If left NULL won't impose such a restriction.}
 
 \item{maximum_version}{The maximum version of python it should be.
-Should be a string with major and minor number separated by a \sQuote{.}.
+Should be a string with major and minor number separated by a \code{.}.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.
-Can use a single "|" to represent a single either-or requirement like "json|simplejson".
-If left NULL won't impose such a restriction.}
+Can use a single \code{|} to represent a single either-or requirement like \code{"json|simplejson"}.
+If left \code{NULL} won't impose such a restriction.}
 }
 \value{
 \code{TRUE} or \code{FALSE} depending on whether the python binary met all requirements
 }
 \description{
-\code{is_python_sufficient} checks whether a given python binary has all the
+\code{is_python_sufficient()} checks whether a given python binary has all the
 desired features (minimum and/or maximum version number and/or access to
 certain modules).
+}
+\examples{
+try({
+  cmd <- find_python_cmd()
+  is_python_sufficient(cmd, minimum_version = "3.3", required_modules = "sys")
+})
 }

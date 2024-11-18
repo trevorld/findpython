@@ -13,16 +13,16 @@ find_python_cmd(
 }
 \arguments{
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a \sQuote{.}.
+Should be a string with major and minor number separated by a \code{.}.
 If left NULL won't impose such a restriction.}
 
 \item{maximum_version}{The maximum version of python it should be.
-Should be a string with major and minor number separated by a \sQuote{.}.
+Should be a string with major and minor number separated by a \code{.}.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.
-Can use a single "|" to represent a single either-or requirement like "json|simplejson".
-If left NULL won't impose such a restriction.}
+Can use a single \code{|} to represent a single either-or requirement like \code{"json|simplejson"}.
+If left \code{NULL} won't impose such a restriction.}
 
 \item{error_message}{What error message the user will see if couldn't find a sufficient python binary.
 If left NULL will print out a default message.}
@@ -31,15 +31,13 @@ If left NULL will print out a default message.}
 The path to an appropriate python binary.  If such a path wasn't found then it will throw an error.
 }
 \description{
-\code{find_python_cmd} finds a suitable python cmd or raises an error if not possible
+\code{find_python_cmd()} finds a suitable python cmd or raises an error if not possible
 }
 \examples{
-     \dontrun{
-             find_python_cmd()
-             find_python_cmd(minimum_version = "2.6", maximum_version = "2.7")
-             find_python_cmd(required_modules = c("argparse", "json | simplejson"))
-     }
+try(find_python_cmd())
+try(find_python_cmd(minimum_version = "2.6", maximum_version = "2.7"))
+try(find_python_cmd(required_modules = c("argparse", "json | simplejson")))
 }
 \seealso{
-\code{\link{can_find_python_cmd}} for a wrapper which doesn't throw an error
+\code{\link[=can_find_python_cmd]{can_find_python_cmd()}} for a wrapper which doesn't throw an error
 }
