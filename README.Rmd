@@ -1,7 +1,7 @@
 # findpython
 
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/findpython)](https://cran.r-project.org/package=findpython)
-[![R-CMD-check](https://github.com/trevorld/findpython/workflows/R-CMD-check/badge.svg)](https://github.com/trevorld/findpython/actions)
+[![R-CMD-check](https://github.com/trevorld/findpython/actions/workflows/R-CMD-check.yaml/badge.svg?branch=master)](https://github.com/trevorld/findpython/actions)
 [![Coverage Status](https://codecov.io/github/trevorld/findpython/branch/master/graph/badge.svg)](https://app.codecov.io/gh/trevorld/findpython)
 [![RStudio CRAN mirror downloads](https://cranlogs.r-pkg.org/badges/findpython)](https://cran.r-project.org/package=findpython)
 

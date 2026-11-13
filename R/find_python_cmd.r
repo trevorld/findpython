@@ -28,10 +28,14 @@
 #' @param path The path to a given python binary.
 #'      If binary is on system path just the binary name will work.
 #' @param minimum_version The minimum version of python it should be.
-#'      Should be a string with major and minor number separated by a `.`.
+#'      Should be a string with major and minor number separated by a `.`
+#'      (e.g. `"3.8"`) or just a major number (e.g. `"3"`, equivalent to `"3.0"`).
+#'      A [numeric_version()] object also works.
 #'      If left NULL won't impose such a restriction.
 #' @param maximum_version The maximum version of python it should be.
-#'      Should be a string with major and minor number separated by a `.`.
+#'      Should be a string with major and minor number separated by a `.`
+#'      (e.g. `"3.8"`) or just a major number (e.g. `"3"`, meaning any `3.x`).
+#'      A [numeric_version()] object also works.
 #'      If left NULL won't impose such a restriction.
 #' @param required_modules Which modules should be required.
 #'      Can use a single `|` to represent a single either-or requirement like `"json|simplejson"`.
@@ -83,6 +87,8 @@ is_python_sufficient <- function(path, minimum_version=NULL,
 #' @export
 find_python_cmd <- function(minimum_version = NULL, maximum_version = NULL,
                             required_modules = NULL, error_message = NULL) {
+    # Validate version strings up front (result unused), even if no candidate binaries are found
+    create_version_checking_code(minimum_version, maximum_version)
     python_cmds <- get_python_cmds()
     for (cmd in python_cmds) {
         if (is_python_sufficient(cmd, minimum_version, maximum_version, required_modules)) {
@@ -139,6 +145,7 @@ get_python_cmds <- function() {
 #' @return `TRUE` or `FALSE` depending on whether
 #'    [find_python_cmd()] could find an appropriate python binary.
 #'     If `TRUE` the path to an appropriate python binary is also set as an attribute.
+#'     Malformed `minimum_version` or `maximum_version` values throw an error.
 #' @examples
 #' did_find_cmd <- can_find_python_cmd()
 #' python_cmd <- attr(did_find_cmd, "python_cmd")
@@ -147,6 +154,8 @@ get_python_cmds <- function() {
 can_find_python_cmd <- function(minimum_version = NULL,
           maximum_version = NULL, required_modules = NULL,
           error_message = NULL, silent = FALSE) {
+    # Malformed version strings are an error rather than `FALSE`
+    create_version_checking_code(minimum_version, maximum_version)
     python_cmd <- try(find_python_cmd(minimum_version = minimum_version,
                           maximum_version = maximum_version,
                           required_modules = required_modules,
@@ -187,27 +196,47 @@ create_version_checking_code <- function(minimum_version = NULL, maximum_version
      } else {
         version_code <- c("import sys")
     }
+    # Index `sys.version_info` as a tuple: named attributes require Python >= 2.7
     if (!is.null(minimum_version)) {
-        min_version <- strsplit(minimum_version, "\\.")[[1]]
-        major <- min_version[1]
-        minor <- min_version[2]
-        version_code <- append(version_code,
-                           c(paste("if sys.version_info.major <", major,
-                                 ": raise Exception('Major version too low')"),
-                           paste("if sys.version_info.major ==", major,
-                                 "and sys.version_info.minor <", minor,
-                                 ": raise Exception('Minor version too low')")))
+        v <- parse_version(minimum_version, "minimum")
+        version_code <- append(version_code, c(
+            sprintf("if sys.version_info[0] < %d : raise Exception('Major version too low')", v[1]),
+            sprintf("if sys.version_info[0] == %d and sys.version_info[1] < %d : raise Exception('Minor version too low')",
+                    v[1], v[2])))
     }
     if (!is.null(maximum_version)) {
-        max_version <- strsplit(maximum_version, "\\.")[[1]]
-        major <- max_version[1]
-        minor <- max_version[2]
-        version_code <- append(version_code,
-                           c(paste("if sys.version_info.major >", major,
-                                 ": raise Exception('Major version too high')"),
-                           paste("if sys.version_info.major ==", major,
-                                 "and sys.version_info.minor >", minor,
-                                 ": raise Exception('Minor version too high')")))
+        v <- parse_version(maximum_version, "maximum")
+        version_code <- append(version_code, c(
+            sprintf("if sys.version_info[0] > %d : raise Exception('Major version too high')", v[1]),
+            sprintf("if sys.version_info[0] == %d and sys.version_info[1] > %d : raise Exception('Minor version too high')",
+                    v[1], v[2])))
     }
     version_code
+}
+
+# Parse a version string like "3" or "3.8" into integer major and minor.
+# A missing minor is 0 for a minimum ("3" means "3.0")
+# and the largest R integer for a maximum ("3" means any "3.x").
+# Python ints are unbounded, so this is a valid literal in every Python version.
+parse_version <- function(version, type = c("minimum", "maximum")) {
+    type <- match.arg(type)
+    # `numeric_version()` objects keep their components so convert losslessly
+    if (inherits(version, "numeric_version"))
+        version <- as.character(version)
+    # Otherwise require a string: a number like 3.10 would silently become "3.1"
+    if (!is.character(version) || length(version) != 1L || is.na(version) ||
+        !grepl("^[0-9]+(\\.[0-9]+)*$", trimws(version))) {
+        stop(sprintf("`%s_version` must be a version string like \"3\" or \"3.10\", not %s",
+                     type, deparse(version)), call. = FALSE)
+    }
+    # Only the major and minor versions are used so ignore any patch version etc.
+    parts <- strsplit(trimws(version), ".", fixed = TRUE)[[1]][1:2]
+    v <- suppressWarnings(as.integer(parts))
+    if (any(is.na(v) & !is.na(parts))) {
+        stop(sprintf("`%s_version` has a version number too large: %s",
+                     type, deparse(version)), call. = FALSE)
+    }
+    if (is.na(v[2]))
+        v[2] <- switch(type, minimum = 0L, maximum = .Machine$integer.max)
+    v
 }
