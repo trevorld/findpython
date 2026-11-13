@@ -13,11 +13,15 @@ find_python_cmd(
 }
 \arguments{
 \item{minimum_version}{The minimum version of python it should be.
-Should be a string with major and minor number separated by a \code{.}.
+Should be a string with major and minor number separated by a \code{.}
+(e.g. \code{"3.8"}) or just a major number (e.g. \code{"3"}, equivalent to \code{"3.0"}).
+A \code{\link[=numeric_version]{numeric_version()}} object also works.
 If left NULL won't impose such a restriction.}
 
 \item{maximum_version}{The maximum version of python it should be.
-Should be a string with major and minor number separated by a \code{.}.
+Should be a string with major and minor number separated by a \code{.}
+(e.g. \code{"3.8"}) or just a major number (e.g. \code{"3"}, meaning any \verb{3.x}).
+A \code{\link[=numeric_version]{numeric_version()}} object also works.
 If left NULL won't impose such a restriction.}
 
 \item{required_modules}{Which modules should be required.

@@ -54,3 +54,49 @@ test_that("Python 3 works as expected", {
                                      required_modules = "json | simplejson"))
     expect_false(is_python_sufficient(cmd, required_modules = "xxxyyyzzz"))
 })
+
+test_that("version strings are parsed correctly", {
+    expect_false(any(grepl("NA", create_version_checking_code("3", "3"))))
+    expect_length(create_version_checking_code(maximum_version = "3"), 3L)
+    expect_length(create_version_checking_code("3.8", "3.10"), 5L)
+    expect_error(create_version_checking_code("three"), "minimum_version")
+    expect_error(create_version_checking_code(maximum_version = "3."), "maximum_version")
+
+    has_python3 <- can_find_python_cmd(minimum_version = "3.0", silent = TRUE)
+    skip_if_not(as.logical(has_python3), "Can't find Python 3")
+    cmd <- attr(has_python3, "python_cmd")
+    expect_true(is_python_sufficient(cmd, minimum_version = "3"))
+    expect_true(is_python_sufficient(cmd, maximum_version = "3"))
+    v <- system2(cmd, c("-c", shQuote("import sys; print('%d.%d' % sys.version_info[:2])")),
+                 stdout = TRUE)
+    expect_true(is_python_sufficient(cmd, minimum_version = v, maximum_version = v))
+    expect_false(is_python_sufficient(cmd, maximum_version = "2"))
+    expect_false(is_python_sufficient(cmd, minimum_version = "4"))
+})
+
+test_that("parse_version() fills in a missing minor version", {
+    expect_identical(parse_version("3", "minimum"), c(3L, 0L))
+    expect_identical(parse_version("3", "maximum"), c(3L, .Machine$integer.max))
+    expect_identical(parse_version("3.10.2", "maximum"), c(3L, 10L))
+})
+
+test_that("parse_version() validates its input", {
+    expect_identical(parse_version(" 3.8 ", "minimum"), c(3L, 8L))
+    expect_error(parse_version(3.10, "minimum"), "minimum_version")
+    expect_identical(parse_version(numeric_version("3.10"), "minimum"), c(3L, 10L))
+    expect_identical(parse_version(numeric_version("3"), "maximum"), c(3L, .Machine$integer.max))
+    expect_identical(parse_version(package_version("3.10.1"), "maximum"), c(3L, 10L))
+    expect_error(parse_version(numeric_version(c("3.8", "3.9")), "minimum"), "minimum_version")
+    expect_error(parse_version(numeric_version("x", strict = FALSE), "minimum"), "minimum_version")
+    expect_error(parse_version(c("3", "4"), "minimum"), "minimum_version")
+    expect_error(parse_version(NA_character_, "maximum"), "maximum_version")
+    expect_error(parse_version("99999999999", "minimum"), "too large")
+    expect_error(parse_version("3.99999999999", "maximum"), "too large")
+    expect_identical(parse_version("3.10.99999999999", "minimum"), c(3L, 10L))
+})
+
+test_that("find_python_cmd() validates versions before searching", {
+    local_mocked_bindings(get_python_cmds = function() character(0))
+    expect_error(find_python_cmd(minimum_version = "three"), "minimum_version")
+    expect_error(can_find_python_cmd(minimum_version = "three", silent = TRUE), "minimum_version")
+})
